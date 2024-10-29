@@ -19,13 +19,13 @@ const Login = () => {
     if (username === 'ansh' && password === '1234') {
       alert('Welcome Ansh');
       navigate('/dashboard');
-    } else if (username === 'retailer2' && password === 'retailerpass2') {
-      alert('Welcome Retailer 2');
+    } else if (username === 'siya' && password === 'pokemon') {
+      alert('Welcome Siya');
       navigate('/dashboard');
-    } else if (username === 'farmer1' && password === 'farmerpass1') {
-      alert('Welcome Farmer 1');
+    } else if (username === 'Ram' && password === 'omshanti') {
+      alert('Welcome Ram');
       navigate('/farmerdash');
-    } else if (username === 'farmer2' && password === 'farmerpass2') {
+    } else if (username === 'Narendra' && password === '4567') {
       alert('Welcome Farmer 2');
       navigate('/farmerdash');
     } else if (username === 'admin' && password === 'adminpass') {
