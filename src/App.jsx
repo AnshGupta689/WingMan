@@ -23,6 +23,7 @@ import { IoLogoUsd } from 'react-icons/io';
 import Card from './components/adminDash/card/card';
 import Cards from './components/cards/cards';
 import Table from  './components/adminDash/table/table'
+import Farmprof from './components/farmerdash/farmprof/farmprof';
 
 // Layout Component to handle common sections (Navbar, Footer)
 const Layout = () => {
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
   {
     path: '/statsfarmer',
     element: <Farmerstat/>
+  },
+  {
+    path: '/farmprof',
+    element: <Farmprof/>
   },
   {
     path: '/adminDash',

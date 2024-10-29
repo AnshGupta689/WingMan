@@ -29,9 +29,9 @@ const Sidebar = () => {
           </li>
 
           <li className="listItem">
-            <Link to="/farmerCrops" className='menuLink flex'>
+            <Link to="/farmprof" className='menuLink flex'>
               <MdOutlineDeliveryDining className='icon1' />
-              <span className='smallText'>My Crops</span>
+              <span className='smallText'>My Profile</span>
             </Link>
           </li>
 
