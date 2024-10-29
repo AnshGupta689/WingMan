@@ -2,54 +2,44 @@ import React, { useState } from 'react';
 import './login.css'; // Assuming the above CSS is in this file
 import video from '../../assets/login-video.mp4'; // Video source
 import logo from '../../assets/leaf-login.jpg'; // Logo source
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
+import { Link, useNavigate } from 'react-router-dom';
 import { FaUserShield } from 'react-icons/fa';
-import { MdOutlinePassword } from 'react-icons/md';
-import { RiLoginBoxLine } from 'react-icons/ri';
+import { MdOutlinePassword } from "react-icons/md";
+import { RiLoginBoxLine } from "react-icons/ri";
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate(); // Initialize navigate for redirection
+  const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
 
-    const data = { username, password };
-
-    try {
-      const response = await fetch('http://localhost:5000/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        // Redirect based on user role
-        if (result.role === 'admin') {
-          navigate('/admindash'); // Redirect to admin dashboard
-        } else if (result.role === 'farmer') {
-          navigate('/farmerdash'); // Redirect to farmer dashboard
-        } else if (result.role === 'retailer') {
-          navigate('/dashboard'); // Redirect to retailer dashboard
-        } else {
-          setErrorMessage('Unknown role. Please contact support.'); // Handle unknown roles
-        }
-      } else {
-        setErrorMessage('Login failed. Check your username or password.');
-      }
-    } catch (error) {
-      console.error('Error during login:', error);
-      setErrorMessage('An error occurred. Please try again later.'); // Handle network or server errors
+    // Hardcoded user roles
+    if (username === 'ansh' && password === '1234') {
+      alert('Welcome Ansh');
+      navigate('/dashboard');
+    } else if (username === 'retailer2' && password === 'retailerpass2') {
+      alert('Welcome Retailer 2');
+      navigate('/dashboard');
+    } else if (username === 'farmer1' && password === 'farmerpass1') {
+      alert('Welcome Farmer 1');
+      navigate('/farmerdash');
+    } else if (username === 'farmer2' && password === 'farmerpass2') {
+      alert('Welcome Farmer 2');
+      navigate('/farmerdash');
+    } else if (username === 'admin' && password === 'adminpass') {
+      alert('Welcome Admin');
+      navigate('/admindash');
+    } else {
+      alert('Invalid credentials. Please try again.');
     }
   };
 
   return (
     <div className='loginPage1 flex'>
       <div className="container1 flex">
+
         <div className="videodiv">
           <video src={video} autoPlay muted loop></video>
 
@@ -69,7 +59,7 @@ const Login = () => {
         {/* Login form on the right */}
         <div className="formDiv flex">
           <div className="headerDiv">
-            <img src={logo} alt='Logo' className='large-logo' />
+            <img src={logo} alt='Logo' className='large-logo'/>
             <h3>Welcome Back!</h3>
           </div>
 
@@ -77,14 +67,14 @@ const Login = () => {
             <div className="inputDiv">
               <label htmlFor="username">Username</label>
               <div className="input flex">
-                <FaUserShield className='icon' />
-                <input
-                  type='text'
-                  id='username'
-                  placeholder='Enter Your Username'
-                  value={username} // Control the input value
-                  onChange={(e) => setUsername(e.target.value)} // Update state
-                  required
+                <FaUserShield className='icon'/>
+                <input 
+                  type='text' 
+                  id='username' 
+                  placeholder='Enter Your Username' 
+                  required 
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
             </div>
@@ -92,31 +82,30 @@ const Login = () => {
             <div className="inputDiv">
               <label htmlFor="password">Password</label>
               <div className="input flex">
-                <MdOutlinePassword className='icon' />
-                <input
-                  type='password'
-                  id='password'
-                  placeholder='Enter Your Password'
-                  value={password} // Control the input value
-                  onChange={(e) => setPassword(e.target.value)} // Update state
-                  required
+                <MdOutlinePassword className='icon'/>
+                <input 
+                  type='password' 
+                  id='password' 
+                  placeholder='Enter Your Password' 
+                  required 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
 
             {/* Personalized login button */}
             <button type='submit' className='btn flex personalized-btn'>
-              <RiLoginBoxLine className='icon' />
               Login
+              <RiLoginBoxLine className='icon'/>
             </button>
 
             <span className='forgotPassword'>
               Forgot your password? <Link to='/forgot-password'><span className='greenText'>Click Here</span></Link>
             </span>
-
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} {/* Display error message */}
           </form>
         </div>
+
       </div>
     </div>
   );
